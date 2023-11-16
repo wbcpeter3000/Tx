@@ -131,7 +131,7 @@ loadpcf:{[x]e:fs2e x;$[e=`XSHE;loadpcfsz;loadpcfsh] x;};
 
 loadpcfer:{[]m:@[getrefxml;f:`imcexchangerate;()];if[0=count[m];lwarn[`loadpcfer;(x;f)];:()];r:update trday:.z.D   from 2!`fc`tc`bid`ask`midpx xcol {"SSFFF"$'(!/)flip x[1]}  each  m[0;1];.db.ETFER:.db.ETFER uj r;};
 
-updetf:{[x;y]@[loadpcf;;()] each .conf.etflist;@[loadpcfer;();()];{set[` sv .conf[`tempdb],x;.db[x]];} each `ETF`ETFPF`ETFER;1b};
+updetf:{[x;y]@[loadpcf;;()] each .conf.etflist;delete from `.db.ETFPF where trday<>.db.sysdate;@[loadpcfer;();()];{set[` sv .conf[`tempdb],x;.db[x]];} each `ETF`ETFPF`ETFER;1b};
 
 
 \
